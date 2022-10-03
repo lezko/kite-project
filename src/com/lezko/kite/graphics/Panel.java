@@ -1,23 +1,41 @@
 package com.lezko.kite.graphics;
 
+import com.lezko.kite.components.Kite;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 /**
  * Created by uleziko_t_a on 26.09.2022.
  */
 public class Panel extends JPanel {
 
-    private final int DEFAULT_WIDTH = 800;
-    private final int DEFAULT_HEIGHT = 600;
-
     private Kite kite;
 
-    public Panel() {
-        setPreferredSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
-        setLayout(null);
+    private int width, height;
 
-        kite = new Kite(100, 100);
-        add(kite);
+    public Panel(int width, int height) {
+        this.width = width;
+        this.height = height;
+        setPreferredSize(new Dimension(width, height));
+
+        kite = new Kite(100, 100, width / 3, height / 3, Color.CYAN);
+
+    }
+
+    public void setSize(int width, int height) {
+        this.width = width;
+        this.height = height;
+    }
+
+    private void updateComponents(Graphics2D g) {
+        kite.setSize(width / 3, height / 3);
+        kite.draw(g);
+    }
+
+    public void paintComponent(Graphics graphics) {
+        updateComponents((Graphics2D) graphics);
     }
 }
