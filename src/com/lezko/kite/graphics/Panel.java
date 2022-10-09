@@ -21,7 +21,7 @@ public class Panel extends JPanel {
         this.height = height;
         setPreferredSize(new Dimension(width, height));
 
-        kite = new Kite(100, 100, width / 3, height / 3, Color.CYAN);
+        kite = new Kite(100, 100, width / 3, height / 3, Color.blue);
 
     }
 
